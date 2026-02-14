@@ -3,6 +3,7 @@
 
 
 import { useState, useEffect } from "react";
+export const dynamic = "force-dynamic";
 import styles from "@/app/styles/contact/contact.module.css";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
