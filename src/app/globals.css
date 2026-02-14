@@ -1,0 +1,9 @@
+body{
+    background-color:#F8F6F280;
+}
+html ,body {
+    margin: 0;
+    padding: 0;
+   
+    direction: rtl;
+}

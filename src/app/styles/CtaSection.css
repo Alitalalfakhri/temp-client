@@ -1,0 +1,108 @@
+/* Section */
+.cta-section {
+  position: relative;
+  padding: 5rem 1rem;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Background gradient */
+.cta-bg-gradient {
+  position: absolute;
+  inset: 0;
+    background: linear-gradient(135deg, hsl(220, 40%, 18%), hsl(220, 50%, 25%));
+
+  opacity: 0.95;
+  z-index: 0;
+}
+
+/* Background pattern */
+.cta-bg-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+  z-index: 1;
+  background-repeat: repeat;
+}
+
+/* Container */
+.cta-container {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+/* Text */
+.cta-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+.cta-subtitle {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 2.5rem;
+}
+
+/* Buttons */
+.cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 500;
+  font-size: 1.125rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* Primary button */
+.cta-btn-primary {
+  background: hsl(45, 95%, 55%); /* gold */
+  color: hsl(220, 30%, 8%); /* dark text */
+}
+
+.cta-btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* Outline button */
+.cta-btn-outline {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  background: transparent;
+}
+
+.cta-btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Icons inside buttons */
+.cta-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .cta-title {
+    font-size: 2.5rem;
+  }
+  .cta-subtitle {
+    font-size: 1.25rem;
+  }
+}

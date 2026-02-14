@@ -1,0 +1,228 @@
+/* Base */
+.hero {
+  position: relative;
+  min-height: 70vh;
+  padding-top: 80px;
+  overflow: hidden;
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+  background-color: linear-gradient(135deg, hsl(220, 40%, 18%) 0%, hsl(220, 50%, 25%) 100%); /* Light grey background */
+  color: #1a1a1a;
+  
+}
+
+/* Background Gradient */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, hsl(220, 40%, 18%), hsl(220, 50%, 25%));
+  opacity: 0.95;
+  z-index: -3;
+}
+
+/* Dot pattern overlay */
+.hero-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  z-index: -2;
+}
+
+/* Floating shapes */
+.floating {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(212, 175, 55, 0.2);
+  animation: float 6s ease-in-out infinite alternate;
+}
+
+.floating-1 {
+  width: 80px;
+  height: 80px;
+  top: 20%;
+  left: 10%;
+}
+
+.floating-2 {
+  width: 130px;
+  height: 130px;
+  bottom: 20%;
+  right: 10%;
+  background-color: rgba(212, 175, 55, 0.1);
+  animation-delay: 1s;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-20px); }
+}
+
+/* Container */
+.hero-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Hero content */
+.hero-content {
+  flex: 1;
+  max-width: 600px;
+}
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background-color: rgba(212, 175, 55, 0.2);
+  color: #fff;
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Hero Title */
+.hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+
+.hero-title .highlight {
+  display: block;
+  margin-top: 0.5rem;
+  color: hsl(45, 95%, 55%); /* Gold */
+}
+
+/* Hero Text */
+.hero-text {
+  font-size: 1.125rem;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 2rem;
+}
+
+/* Buttons */
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, hsl(45,95%,55%), hsl(40,95%,45%));
+  color: #111;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212,175,55,0.5);
+}
+
+.btn-outline {
+  padding: 0.75rem 1.5rem;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  background: transparent;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.btn-outline:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+
+/* Hero Features */
+.hero-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255,255,255,0.8);
+}
+
+.icon-feature {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: hsl(45, 95%, 55%);
+}
+
+/* Hero Image */
+.hero-image-container {
+  flex: 1;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.image-bg-circle {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: hsl(45, 95%, 55%);
+  opacity: 0.2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(4rem);
+}
+
+.hero-image-wrapper {
+  position: relative;
+  width: 384px;
+  height: 384px;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 4px solid rgba(212,175,55,0.3);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(45,45,45,0.5), transparent);
+}
+
+/* Responsive */
+@media (min-width: 1024px) {
+  .hero-image-container {
+    display: flex;
+  }
+}

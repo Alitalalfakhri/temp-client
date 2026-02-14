@@ -1,0 +1,128 @@
+/* Section background */
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@812&display=swap');
+
+.why-section {
+
+  padding: 5rem 1rem;
+  background-color: #f2f2f2; /* light grey background */
+}
+
+/* Container */
+.why-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Header */
+.why-header .why-label {
+  display: inline-block;
+  
+  padding: 8px 16px;
+  border-radius: 999px;
+  background-color: hsl(45, 40%, 92%); /* muted gold */
+  color: hsl(45, 95%, 35%); /* dark gold */
+  font-weight: 500;
+  margin-bottom: 1rem;
+  font-size: 17px;
+}
+
+.why-header .why-title {
+    margin-top: 0.1rem;
+  font-size: 50px;
+  font-weight: bold;
+  color: #1a1a1a; /* dark grey */
+  margin-bottom: 1rem;
+  
+}
+
+.why-header .why-title .text-primary {
+  color: hsl(45, 95%, 55%); /* gold */
+}
+
+.why-header .why-subtitle {
+  max-width: 600px;
+  margin: 0 auto;
+  color: #555; /* grey text */
+  font-size: 1.3rem;
+}
+
+/* Grid */
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+  .why-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .why-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Feature Card */
+.feature-card {
+  padding: 2rem;
+  background-color: white;
+  border-radius: 1.5rem;
+  border: 1px solid #e5e5e5;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.feature-card:hover {
+  border-color: hsl(45, 95%, 55%); /* gold border */
+  box-shadow: 0 12px 28px rgba(0,0,0,0.1);
+  transform: translateY(-5px);
+}
+
+/* Feature Icon */
+.feature-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 1.5rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, hsl(45,95%,55%), hsl(40,95%,45%)); /* gold gradient */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+  transform: scale(1.1);
+}
+
+.icon-inner {
+  width: 28px;
+  height: 28px;
+  color: white;
+}
+
+/* Titles & Descriptions */
+.feature-title {
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+  font-family: 'Cairo', sans-serif;
+}
+
+.feature-card:hover .feature-title {
+  color: hsl(45, 95%, 55%); /* gold */
+}
+
+.feature-description {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}

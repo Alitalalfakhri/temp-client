@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap');
+
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+}
+
+.container {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 80px 20px;
+}
+
+/* Hero */
+.hero {
+  background-color: #1c2d45;
+  color: #fff;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.heroTag {
+  display: inline-block;
+  padding: 6px 12px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 999px;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.heroTitle {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.highlight {
+  color: #FFD54F;
+}
+
+.heroText {
+  font-size: 18px;
+  opacity: 0.8;
+}
+
+/* Grid */
+.contactGrid {
+  display: grid;
+  gap: 40px;
+}
+
+@media(min-width: 992px) {
+  .contactGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Form */
+.contactForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.formTitle {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.row {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+@media(min-width: 768px) {
+  .row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+}
+
+.textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  resize: vertical;
+}
+
+.btnSubmit {
+  padding: 14px;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  background: #FFD54F;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btnSubmit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* Map */
+.mapBox iframe {
+  width: 100%;
+  min-height: 350px;
+  border: 0;
+  border-radius: 16px;
+}
+
+
+/* Contact Info Section */
+.contactInfoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.infoTitle {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+/* Info Cards */
+.infoCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: #f8f9fa;
+  text-decoration: none;
+  color: #1c2d45;
+  transition: all 0.3s ease;
+  border:1px solid grey
+}
+
+.infoCard:hover {
+  background: #FFD54F;
+  color: #1c2d45;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.icon {
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Adjust text inside cards */
+.infoCard h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.infoCard p {
+  margin: 4px 0 0 0;
+  font-size: 14px;
+  opacity: 0.8;
+}

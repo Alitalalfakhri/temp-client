@@ -1,0 +1,540 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap');
+
+/* ===========================
+   THEME VARIABLES
+=========================== */
+:root {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(220 30% 15%);
+  --card: hsl(0 0% 100%);
+  --accent: hsl(45 60% 92%);
+  --primary: hsl(45 95% 55%);
+  --primary-foreground: hsl(220 30% 15%);
+  --secondary: hsl(220 40% 20%);
+  --border: hsl(220 20% 90%);
+  --radius: 0.75rem;
+  --gradient-primary: linear-gradient(135deg, hsl(45 95% 55%) 0%, hsl(40 95% 45%) 100%);
+}
+
+/* ===========================
+   BASE GLOBAL STYLES
+=========================== */
+:global(*) {
+  box-sizing: border-box;
+}
+
+:global(html) {
+  scroll-behavior: smooth;
+}
+
+:global(body) {
+  margin: 0;
+  font-family: 'Cairo', sans-serif;
+  background: var(--background);
+  color: var(--foreground);
+  direction: rtl;
+}
+
+/* ===========================
+   ANIMATIONS
+=========================== */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================
+  hero of the page 
+  ============================= */
+.productHero{
+  background-color:blue;
+  margin-top: 120px;
+  padding: 60px 20px;
+  color:white;
+  background-color: var(--primary-foreground); 
+}
+
+.productHero h1{
+  font-size: 2.5rem;
+  margin: 0;
+}
+.productHero p{
+
+  color:white;
+  font: 400 1.1rem 'Cairo', sans-serif;
+  margin-top: 12px;
+}
+.badgeContainer{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.badge{
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: 999px;
+  background: rgba(255, 200, 0, 0.2);
+  margin-bottom: 20px;
+  font-size: 14px;
+  margin-bottom:0px;
+    font: 400 1rem 'Cairo', sans-serif;
+
+}
+.heroBackground {
+   position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  z-index: 2;
+}
+
+
+
+
+/* ===========================
+   PRODUCT LIST
+=========================== */
+.productList {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 20px;
+  margin-top: 100px;
+}
+
+@media (max-width: 768px) {
+  .productList {
+    gap: 24px;
+    padding: 16px;
+    margin-top: 60px;
+  }
+}
+
+/* ===========================
+   PRODUCT BLOCK
+=========================== */
+.productBlock {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: auto;
+  border-radius: var(--radius);
+  background-color: #F8F8F8;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.4);
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* alternating layout */
+.productBlock:nth-child(even) {
+  direction: rtl;
+}
+
+.productBlock:nth-child(odd) {
+  direction: ltr;
+}
+
+/* Mobile responsive - Image on top, content below */
+@media (max-width: 768px) {
+  .productBlock {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    height: auto;
+    direction: rtl !important;
+  }
+  
+  .productBlock:nth-child(even),
+  .productBlock:nth-child(odd) {
+    direction: rtl !important;
+  }
+  
+  /* Force image section to appear first */
+  .productBlock > .imageSection {
+    order: -1;
+  }
+}
+
+/* ===========================
+   CONTENT SECTION
+=========================== */
+.contentSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  padding: 32px;
+  height: 100%;
+  animation: fadeUp 0.6s ease-out forwards;
+}
+
+@media (max-width: 768px) {
+  .contentSection {
+    padding: 24px 16px;
+    gap: 16px;
+  }
+}
+
+/* ===========================
+   PRODUCT TITLE
+=========================== */
+.productTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .productTitle {
+    font-size: 1.5rem;
+  }
+}
+
+/* ===========================
+   SIZE GRID
+=========================== */
+.sizesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .sizesGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+}
+
+/* ===========================
+   SIZE BUTTON
+=========================== */
+.sizeButton {
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 0.25rem);
+  padding: 14px 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  font-family: inherit;
+}
+
+.sizeButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+  border-color: var(--primary);
+}
+
+.selected {
+  background: var(--gradient-primary);
+  color: var(--primary-foreground);
+  border-color: transparent;
+  box-shadow: 0 10px 30px rgba(218,165,32,0.45);
+}
+
+@media (max-width: 768px) {
+  .sizeButton {
+    padding: 10px 8px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sizeButton {
+    padding: 8px 6px;
+    font-size: 0.8rem;
+  }
+}
+
+/* ===========================
+   SIZE AND PRICE LABELS
+=========================== */
+.sizeLabel {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.priceLabel {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .sizeLabel {
+    font-size: 0.85rem;
+    margin-bottom: 2px;
+  }
+  
+  .priceLabel {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sizeLabel {
+    font-size: 0.8rem;
+    margin-bottom: 2px;
+  }
+  
+  .priceLabel {
+    font-size: 0.75rem;
+  }
+}
+
+/* ===========================
+   CTA BUTTON
+=========================== */
+.ctaButton {
+  margin-top: auto;
+  padding: 14px 36px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: var(--gradient-primary);
+  color: var(--primary-foreground);
+  font-weight: 600;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 12px 30px rgba(218,165,32,0.45);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  font-size: 1rem;
+}
+
+.ctaButton:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 20px 50px rgba(218,165,32,0.6);
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+  font-size: 1.2rem;
+}
+
+.ctaButton:hover .arrow {
+  transform: translateX(-6px);
+}
+
+@media (max-width: 768px) {
+  .ctaButton {
+    padding: 12px 28px;
+    font-size: 0.95rem;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ===========================
+   IMAGE SECTION
+=========================== */
+.imageSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+@media (max-width: 768px) {
+  .imageSection {
+    padding: 20px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.02), transparent);
+  }
+}
+
+.productImage {
+  width: 55%;
+  height: 360px;
+  object-fit: contain;
+  border-radius: var(--radius);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+  animation: fadeUp 0.8s ease-out forwards;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.productImage:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+}
+
+@media (max-width: 768px) {
+  .productImage {
+    width: 90%;
+    height: 300px;
+    max-width: 100%;
+  }
+  
+  /* Reduce hover effects on mobile */
+  .productImage:hover {
+    transform: translateY(-2px) scale(1.02);
+  }
+}
+
+@media (max-width: 480px) {
+  .productImage {
+    width: 100%;
+    height: 260px;
+  }
+}
+/* ===========================
+   IMAGE DIALOG/MODAL
+=========================== */
+.imageDialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.dialogOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.dialogContent {
+  position: relative;
+  background: var(--background);
+  border-radius: var(--radius);
+  padding: 24px;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+  animation: scaleIn 0.3s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.closeButton:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: rotate(90deg);
+}
+
+.dialogImageWrapper {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: calc(var(--radius) - 0.25rem);
+}
+
+.dialogImage {
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: calc(var(--radius) - 0.25rem);
+}
+
+.dialogTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--foreground);
+  text-align: center;
+  margin: 8px 0 0 0;
+}
+
+@media (max-width: 768px) {
+  .imageDialog {
+    padding: 12px;
+  }
+  
+  .dialogContent {
+    padding: 16px;
+    max-width: 95vw;
+    max-height: 95vh;
+  }
+  
+  .closeButton {
+    width: 36px;
+    height: 36px;
+    top: 8px;
+    left: 8px;
+  }
+  
+  .dialogImage {
+    max-height: 60vh;
+  }
+  
+  .dialogTitle {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dialogContent {
+    padding: 12px;
+  }
+  
+  .closeButton {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .dialogImage {
+    max-height: 50vh;
+  }
+  
+  .dialogTitle {
+    font-size: 1rem;
+  }
+}
