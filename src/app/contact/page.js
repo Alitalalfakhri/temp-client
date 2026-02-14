@@ -1,16 +1,23 @@
 'use client';
 
+
+
 import { useState, useEffect } from "react";
-export const dynamic = "force-dynamic";
 import styles from "@/app/styles/contact/contact.module.css";
 import Header from "@/app/components/Header";
-import Footer from "@/app/components/footer";
-import { useRouter, useSearchParams } from "next/navigation";
+import Footer from "@/app/components/Footer";
+import { useRouter } from "next/navigation";
 
 export default function Contact() {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const productQuery = searchParams.get("product");
+
+  const [productQuery, setProductQuery] = useState(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setProductQuery(params.get("product"));
+  }, []);
+
 
   const [formData, setFormData] = useState({
     name: "",
