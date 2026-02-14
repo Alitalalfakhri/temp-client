@@ -9,15 +9,12 @@ import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { useRouter } from "next/navigation";
 
+import { useSearchParams } from "next/navigation";
+
 export default function Contact() {
-  const router = useRouter();
+  const searchParams = useSearchParams();
+  const productQuery = searchParams.get("product") || "";
 
-  const [productQuery, setProductQuery] = useState(null);
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    setProductQuery(params.get("product"));
-  }, []);
 
 
   const [formData, setFormData] = useState({
