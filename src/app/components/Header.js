@@ -14,7 +14,9 @@ export default function Header() {
     { name: "الرئيسية", path: "/" },
     { name: "من نحن", path: "/about" },
     { name: "منتجاتنا", path: "/products" },
+     {name: 'اراء العملاء' , path: '/reviews'},
     { name: "تواصل معنا", path: "/contact" },
+   
   ];
 
   const isActive = (path) => pathname === path;

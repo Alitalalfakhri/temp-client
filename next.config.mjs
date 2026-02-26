@@ -1,10 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
-  reactCompiler: true,
- 
   images: {
-    domains: ['ik.imagekit.io'],
+    domains: ["ik.imagekit.io"], // أي دومين تستخدمه بالفعل
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "img.youtube.com",
+        port: "",        // تركها فارغة
+        pathname: "/vi/**", // كل thumbnails الفيديوهات
+      },
+    ],
   },
 };
 

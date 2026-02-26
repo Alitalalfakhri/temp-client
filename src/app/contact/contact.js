@@ -6,7 +6,7 @@ import Header from "@/app/components/Header";
 import Footer from "@/app/components/footer";
 import { useRouter, useSearchParams } from "next/navigation";
 
-export default function ContactClient() {
+export default function ContactCode() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const productQuery = searchParams.get("product");

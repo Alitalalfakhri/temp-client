@@ -1,13 +1,17 @@
 
-import ContactClient from './contactClient'
+import ContactCode from "./contact.js";
+
 import { Suspense } from "react";
 
-export default function Contact() {
-  return(
 
+
+export default function Contact() {
+  
+  return(
+     
     <>
     <Suspense fallback={<div>Loading...</div>}>
-      <ContactClient/>
+      <ContactCode/>
     </Suspense>
       
     </>
