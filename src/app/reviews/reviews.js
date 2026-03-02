@@ -1,44 +1,62 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "../styles/reviews/reviews.module.css";
 import Header from "../components/Header";
 import Footer from "../components/footer";
+import { API_URL } from "../lib/lib.js";
+import axios from "axios";
 
 export default function Reviews() {
   const [activeVideo, setActiveVideo] = useState(null);
+  const [videos, setVideos] = useState([]);
 
-  const videoReviews = [
-    {
-      company: "شركة التغليف المتقدمة",
-      role: "مدير المشتريات",
-      rating: 5,
-      comment: "جودة ممتازة وخدمة سريعة، نتعامل معهم منذ أكثر من 5 سنوات",
-      videoId: "dQw4w9WgXcQ",
-    },
-    {
-      company: "مصنع المواد الغذائية",
-      role: "المدير العام",
-      rating: 5,
-      comment: "أفضل مصنع تعاملنا معه، التزام بالمواعيد والجودة",
-      videoId: "dQw4w9WgXcQ",
-    },
-    {
-      company: "سوبرماركت السالم",
-      role: "مدير العمليات",
-      rating: 5,
-      comment: "أكياس متينة وطباعة احترافية",
-      videoId: "dQw4w9WgXcQ",
-    },
-  ];
+  // ---------------- FETCH VIDEOS ----------------
+  const fetchVideos = async () => {
+    try {
+      const res = await axios.get(`${API_URL}/api/reviews/videos`);
+      const data = res.data;
+      console.log("Fetched videos:", data); // debug log
+      setVideos(Array.isArray(data) ? data : []);
+    } catch (err) {
+      console.error("Reviews fetch error:", err);
+      setVideos([]);
+    }
+  };
 
+  useEffect(() => {
+    fetchVideos();
+  }, []);
+
+  // ---------------- GET VIDEO ID ----------------
+  const getVideoIdFromUrl = (url) => {
+    if (!url) return null;
+
+    // youtu.be short link
+    const shortMatch = url.match(/youtu\.be\/([^\?&]+)/);
+    if (shortMatch) return shortMatch[1];
+
+    // regular watch link
+    const longMatch = url.match(/v=([^\?&]+)/);
+    if (longMatch) return longMatch[1];
+
+    // shorts link
+    const shortsMatch = url.match(/\/shorts\/([^\?&]+)/);
+    if (shortsMatch) return shortsMatch[1];
+
+    return null;
+  };
+
+  // ---------------- GET THUMBNAIL ----------------
   const getThumbnail = (id) =>
-    `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+    `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
 
   return (
     <div className={styles.page}>
-        <Header/>
+      <Header />
+
+      {/* ---------------- HERO ---------------- */}
       <section className={styles.hero}>
         <div className={styles.container}>
           <span className={styles.badge}>آراء العملاء</span>
@@ -49,63 +67,78 @@ export default function Reviews() {
         </div>
       </section>
 
+      {/* ---------------- REVIEWS ---------------- */}
       <section className={styles.reviews}>
         <div className={styles.grid}>
-          {videoReviews.map((review, index) => (
-            <div className={styles.card} key={index}>
-              <div className={styles.videoWrapper}>
-                {activeVideo === index ? (
-                  <iframe
-                    src={`https://www.youtube.com/embed/${review.videoId}?autoplay=1`}
-                    allow="autoplay; encrypted-media"
-                    allowFullScreen
-                    loading="lazy"
-                  />
-                ) : (
-                  <div
-                    className={styles.thumbnail}
-                    onClick={() => setActiveVideo(index)}
-                  >
-                    <Image
-                      src={getThumbnail(review.videoId)}
-                      alt={review.company}
-                      fill
-                      sizes="(max-width:768px) 100vw, 33vw"
-                      className={styles.image}
-                      priority={false}
-                    />
-                    <div className={styles.playBtn}>▶</div>
-                  </div>
-                )}
-              </div>
+          {videos.length === 0 && <p>لا توجد فيديوهات حالياً</p>}
 
-              <div className={styles.cardContent}>
-                <div className={styles.stars}>
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <span
-                      key={i}
-                      className={
-                        i < review.rating
-                          ? styles.starActive
-                          : styles.star
-                      }
+          {videos.map((review, index) => {
+            const videoId = review.videoId || getVideoIdFromUrl(review.videoUrl);
+            if (!videoId) return <p key={index}>Video ID not found</p>;
+
+            return (
+              <div className={styles.card} key={index}>
+                <div className={styles.videoWrapper}>
+                  {activeVideo === index ? (
+                    <iframe
+                      src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+                      allow="autoplay; encrypted-media"
+                      allowFullScreen
+                      loading="lazy"
+                      className={styles.iframe}
+                    />
+                  ) : (
+                    <div
+                      className={styles.thumbnail}
+                      onClick={() => setActiveVideo(index)}
                     >
-                      ★
-                    </span>
-                  ))}
+                      <Image
+                        src={getThumbnail(videoId)}
+                        alt={review.company || "فيديو"}
+                        fill
+                        sizes="(max-width:768px) 100vw, 33vw"
+                        className={styles.image}
+                        priority={false}
+                      />
+                      <div className={styles.playBtn}>▶</div>
+                    </div>
+                  )}
                 </div>
 
-                <p className={styles.comment}>"{review.comment}"</p>
+                <div className={styles.cardContent}>
+                  {/* Stars */}
+                  <div className={styles.stars}>
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <span
+                        key={i}
+                       style={{color:"yellow"}}
+                      >
+                        ★
+                      </span>
+                    ))}
+                  </div>
 
-                <p className={styles.meta}>
-                  {review.role} - {review.company}
-                </p>
+                  {/* Comment */}
+                  {(review.comment || review.description) && (
+                    <p className={styles.comment}>
+                      "{review.comment || review.description}"
+                    </p>
+                  )}
+
+                  {/* Role / Company */}
+                  <p className={styles.meta}>
+                    {review.role ? review.role : ""}
+                    {review.role && review.company ? " - " : ""}
+                    {review.company ? review.company : ""}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
-      <Footer/>
+
+      <Footer />
     </div>
   );
 }
