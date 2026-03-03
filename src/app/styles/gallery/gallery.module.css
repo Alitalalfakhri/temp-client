@@ -1,0 +1,449 @@
+/* CSS Variables */
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(220, 30%, 15%);
+  --primary: hsl(45, 95%, 55%);
+  --primary-foreground: hsl(220, 30%, 15%);
+  --secondary: hsl(220, 40%, 20%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --muted: hsl(45, 30%, 96%);
+  --muted-foreground: hsl(220, 20%, 45%);
+  --accent: hsl(45, 60%, 92%);
+  --accent-foreground: hsl(45, 95%, 35%);
+  --border: hsl(220, 20%, 90%);
+  --radius: 0.75rem;
+  --gradient-primary: linear-gradient(135deg, hsl(45, 95%, 55%) 0%, hsl(40, 95%, 45%) 100%);
+  --gradient-secondary: linear-gradient(135deg, hsl(220, 40%, 20%) 0%, hsl(220, 40%, 15%) 100%);
+  --gradient-hero: linear-gradient(135deg, hsl(220, 40%, 18%) 0%, hsl(220, 50%, 25%) 100%);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Cairo', 'Tajawal', sans-serif;
+  direction: rtl;
+}
+
+/* Layout */
+.wrapper {
+  min-height: 100vh;
+}
+
+/* Hero Section */
+.heroSection {
+  padding: 8rem 1rem 5rem;
+  background: var(--gradient-hero);
+}
+
+.heroContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.heroInner {
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  background: hsla(45, 95%, 55%, 0.2);
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.heroTitle {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+}
+
+.heroTitle span {
+  color: var(--primary);
+}
+
+.heroDesc {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Gallery Section */
+.gallerySection {
+  padding: 5rem 1rem;
+  background: var(--background);
+}
+
+.galleryContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Tabs */
+.tabsList {
+  display: flex;
+  width: fit-content;
+  margin: 0 auto 3rem;
+  background: var(--muted);
+  border-radius: var(--radius);
+  padding: 0.25rem;
+  gap: 0.25rem;
+}
+
+.tabTrigger {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.5rem;
+  border: none;
+  background: transparent;
+  border-radius: calc(var(--radius) - 2px);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.tabTrigger:hover {
+  color: var(--foreground);
+}
+
+.tabTrigger.active {
+  background: white;
+  color: var(--foreground);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tabTrigger svg {
+  width: 16px;
+  height: 16px;
+}
+
+.tabContent {
+  display: none;
+}
+
+.tabContent.active {
+  display: block;
+}
+
+/* Image Grid */
+.imageGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .imageGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .imageCard {
+    height: 40px;
+  }
+}
+
+.imageCard {
+  position: relative;
+  cursor: pointer;
+  border-radius: var(--radius);
+  overflow: hidden;
+  height: 40vh;
+}
+
+.imageCard img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.5s ease;
+  display: block;
+}
+
+.imageCard:hover img {
+  transform: scale(1.1);
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: hsla(220, 40%, 20%, 0);
+  display: flex;
+  align-items: flex-end;
+  transition: background 0.3s;
+}
+
+.imageCard:hover .imageOverlay {
+  background: hsla(220, 40%, 20%, 0.6);
+}
+
+.imageOverlay p {
+  color: white;
+  font-weight: 500;
+  padding: 1rem;
+  transform: translateY(100%);
+  transition: transform 0.3s;
+}
+
+.imageCard:hover .imageOverlay p {
+  transform: translateY(0);
+}
+
+/* Video Grid */
+.videoGrid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .videoGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .videoGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.videoCard {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+/* YouTube Shorts — portrait aspect ratio */
+.shortsCard {
+  aspect-ratio: 9 / 16;
+  max-height: 480px;
+  justify-self: center;
+  width: 100%;
+}
+
+/* Iframe fills the card exactly */
+.videoIframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Thumbnail wrapper fills the card */
+.videoThumbnail {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+}
+
+.videoThumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.videoOverlay {
+  position: absolute;
+  inset: 0;
+  background: hsla(220, 40%, 20%, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+.videoThumbnail:hover .videoOverlay {
+  background: hsla(220, 40%, 20%, 0.6);
+}
+
+.playBtn {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s;
+}
+
+.videoThumbnail:hover .playBtn {
+  transform: scale(1.1);
+}
+
+.playBtn svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  fill: white;
+  color: white;
+  margin-right: -2px;
+}
+
+.videoTitle {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  color: white;
+  font-weight: 500;
+  background: linear-gradient(to top, hsla(220, 40%, 20%, 0.8), transparent);
+  z-index: 2;
+}
+
+/* Close button — sits top-right of the active video */
+.closeBtn {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  z-index: 10;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.65);
+  color: white;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+
+.closeBtn:hover {
+  background: rgba(200, 30, 30, 0.85);
+  transform: scale(1.1);
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: hsla(220, 40%, 10%, 0.85);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: lightboxFadeIn 0.25s ease;
+}
+
+@keyframes lightboxFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.lightboxClose {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: background 0.2s;
+}
+
+.lightboxClose:hover {
+  background: rgba(200, 30, 30, 0.75);
+}
+
+.lightboxClose svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  stroke: white;
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Constrained image container */
+.lightboxContent {
+  position: relative;
+  width: min(680px, 90vw);
+  max-height: 80vh;
+  background: var(--secondary);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  animation: lightboxPopIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes lightboxPopIn {
+  from { opacity: 0; transform: scale(0.88); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.lightboxContent img {
+  width: 100%;
+  height: auto;
+  max-height: calc(80vh - 3rem);
+  object-fit: contain;
+  display: block;
+}
+
+.lightboxTitle {
+  color: white;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  background: var(--gradient-secondary);
+  margin: 0;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4rem;
+  background: hsla(220, 40%, 18%, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  justify-content: space-between;
+}
+
+.navbarBrand {
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+/* Footer */
+.footer {
+  background: var(--secondary);
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.875rem;
+  opacity: 0.8;
+}

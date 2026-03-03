@@ -12,9 +12,12 @@ export default function Header() {
 
   const navLinks = [
     { name: "الرئيسية", path: "/" },
-    { name: "من نحن", path: "/about" },
     { name: "منتجاتنا", path: "/products" },
+
+  
+    {name:'معرض اعمالنا', path:'/gallery' },
      {name: 'اراء العملاء' , path: '/reviews'},
+       { name: "من نحن", path: "/about" },
     { name: "تواصل معنا", path: "/contact" },
    
   ];

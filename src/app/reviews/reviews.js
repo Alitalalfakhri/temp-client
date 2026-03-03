@@ -111,7 +111,8 @@ export default function Reviews() {
                     {Array.from({ length: 5 }).map((_, i) => (
                       <span
                         key={i}
-                       style={{color:"yellow"}}
+                       style={{color:"orange" , fontSize:"20px" , fontWeight:"bold" }}
+
                       >
                         ★
                       </span>
