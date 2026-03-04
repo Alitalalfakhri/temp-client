@@ -93,6 +93,123 @@
   background: linear-gradient(to top, rgba(30,30,30,0.7), transparent);
 }
 
+.product-video-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(218, 165, 32, 0.95);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: transform 0.2s ease, background 0.2s ease;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.product-video-play:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  background: hsl(45, 95%, 45%);
+}
+
+.product-video-play svg {
+  width: 28px;
+  height: 28px;
+  margin-left: 4px;
+}
+
+@media (max-width: 768px) {
+  .product-video-play {
+    width: 48px;
+    height: 48px;
+  }
+  .product-video-play svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* Video modal (home section) */
+.product-video-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.product-video-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(6px);
+}
+
+.product-video-modal-content {
+  position: relative;
+  background: #fff;
+  border-radius: 0.75rem;
+  padding: 16px;
+  max-width: 90vw;
+  width: 100%;
+  max-width: 640px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+}
+
+.product-video-modal-close {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 1;
+  transition: background 0.2s ease;
+}
+
+.product-video-modal-close:hover {
+  background: rgba(0,0,0,0.8);
+}
+
+.product-video-modal-iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: 0.5rem;
+  display: block;
+}
+
+.product-video-modal-title {
+  margin: 10px 0 0 0;
+  font-weight: 600;
+  color: #1a1a1a;
+  font-size: 1rem;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .product-video-modal-content {
+    padding: 12px;
+    max-width: 95vw;
+  }
+  .product-video-modal-iframe {
+    min-height: 200px;
+  }
+}
+
 .product-icon {
   position: absolute;
   bottom: 1rem;

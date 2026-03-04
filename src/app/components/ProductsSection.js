@@ -2,19 +2,28 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState , useEffect, use} from "react";
-import { ArrowLeft, ShoppingBag, Package, Utensils, Printer } from "lucide-react";
+import { useState , useEffect } from "react";
+import { ArrowLeft } from "lucide-react";
 import "../styles/productSection.css";
-import splx from "../assets/siplx.jpg";
-import mat from "../assets/mat.jpg";
-import naelon from '../assets/naelon.jpg';
-import fanela from '../assets/fanela.jpg';
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 import { API_URL } from "@/app/lib/lib.js";
-const ProductsSection = () => {
 
+function getYouTubeEmbedUrl(url) {
+  if (!url || typeof url !== "string") return null;
+  const shortsMatch = url.match(/youtube\.com\/shorts\/([a-zA-Z0-9_-]+)/);
+  if (shortsMatch) return `https://www.youtube.com/embed/${shortsMatch[1]}`;
+  const shortMatch = url.match(/youtu\.be\/([a-zA-Z0-9_-]+)/);
+  if (shortMatch) return `https://www.youtube.com/embed/${shortMatch[1]}`;
+  const watchMatch = url.match(/youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/);
+  if (watchMatch) return `https://www.youtube.com/embed/${watchMatch[1]}`;
+  if (url.includes("/embed/")) return url;
+  return url;
+}
+
+const ProductsSection = () => {
   const [loading, setLoading] = useState(true);
-  const [products , setProducts] = useState([])
+  const [products, setProducts] = useState([]);
+  const [videoProduct, setVideoProduct] = useState(null);
 
   useEffect(() => {
     let isMounted = true; // flag to prevent setting state if component unmounts
@@ -67,25 +76,44 @@ const ProductsSection = () => {
 
          
         <div className="products-grid">
-          {products.map((product, index) => {
-            const Icon = product.icon;
-            return (
-              <div key={product.id} className="product-card" style={{ animationDelay: `${index * 0.1}s` }} onClick={() => {
-                handelClick(product.title)
-              }}>
-                <div className="product-image-wrapper">
-                  <Image src={product.imageLink} alt={product.title} className="product-image" width={100} height={100}/>
-                  <div className="product-gradient" />
-                 
-                </div>
-                <div className="product-content">
-                  <h3 className="product-title">{product.title}</h3>
-                  <p className="product-description">{product.description}</p>
-                </div>
+          {products.map((product, index) => (
+            <div
+              key={product.id}
+              className="product-card"
+              style={{ animationDelay: `${index * 0.1}s` }}
+              onClick={() => handelClick(product.title)}
+            >
+              <div className="product-image-wrapper">
+                <Image src={product.imageLink} alt={product.title} className="product-image" width={100} height={100} />
+                <div className="product-gradient" />
+                
               </div>
-            );
-          })}
+              <div className="product-content">
+                <h3 className="product-title">{product.title}</h3>
+                <p className="product-description">{product.description}</p>
+              </div>
+            </div>
+          ))}
         </div>
+
+        {videoProduct && videoProduct.videoLink && (
+          <div className="product-video-modal" onClick={() => setVideoProduct(null)}>
+            <div className="product-video-modal-backdrop" />
+            <div className="product-video-modal-content" onClick={(e) => e.stopPropagation()}>
+              <button type="button" className="product-video-modal-close" onClick={() => setVideoProduct(null)} aria-label="إغلاق">
+                ✕
+              </button>
+              <iframe
+                src={`${getYouTubeEmbedUrl(videoProduct.videoLink)}?rel=0`}
+                allow="accelerometer; autoplay; encrypted-media; fullscreen"
+                allowFullScreen
+                className="product-video-modal-iframe"
+                title={videoProduct.title}
+              />
+              <p className="product-video-modal-title">{videoProduct.title}</p>
+            </div>
+          </div>
+        )}
 
         {/* CTA */}
         <div className="products-cta">

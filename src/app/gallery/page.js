@@ -209,15 +209,6 @@ export default function Gallery() {
       {/* Lightbox — images only */}
       {lightboxImage && (
         <div className={styles.lightbox} onClick={() => setLightboxImage(null)}>
-          <button
-            className={styles.lightboxClose}
-            onClick={() => setLightboxImage(null)}
-          >
-            <svg viewBox="0 0 24 24">
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </button>
           <div
             className={styles.lightboxContent}
             onClick={(e) => e.stopPropagation()}
@@ -225,6 +216,17 @@ export default function Gallery() {
             <img src={lightboxImage.src} alt={lightboxImage.title} />
             <p className={styles.lightboxTitle}>{lightboxImage.title}</p>
           </div>
+          <button
+            type="button"
+            className={styles.lightboxClose}
+            onClick={(e) => { e.stopPropagation(); setLightboxImage(null); }}
+            aria-label="إغلاق"
+          >
+            <svg viewBox="0 0 24 24">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
         </div>
       )}
 
