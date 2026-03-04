@@ -9,6 +9,17 @@ import {API_URL} from '../lib/lib'
 import { X } from 'lucide-react'
 
 
+export const metadata = {
+    title:"معرض اعمالنا | شركة الطيف الذهبي للطباعة والتغليف",
+    description:"تعرف على مختلف انواع الاكياس البلاستيكة وانظر الى اعمالنا السابقةة",
+    robots: {
+      index: true,
+      follow: true,
+    },
+}
+
+
+
 export default function Gallery() {
   const [activeTab, setActiveTab] = useState("images");
   const [lightboxImage, setLightboxImage] = useState(null);

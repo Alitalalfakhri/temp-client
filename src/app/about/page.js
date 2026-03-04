@@ -10,6 +10,24 @@ import {
 } from "lucide-react";
 import styles from "@/app/styles/about/main.module.css";
 
+export const metadata = {
+  title: "عن شركة الطيف الذهبي | شركة طباعة وتغليف في العراق",
+  description:
+    "تعرف على شركة الطيف الذهبي للطباعة والتغليف في العراق، خبرتنا، رؤيتنا، وخدماتنا في تقديم حلول طباعة عالية الجودة للشركات.",
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    title: "عن شركة الطيف الذهبي | شركة طباعة وتغليف في العراق",
+    description:
+      "اكتشف قصة شركة الطيف الذهبي وخبرتنا في مجال الطباعة والتغليف داخل العراق.",
+    siteName: "شركة الطيف الذهبي",
+    locale: "ar_IQ",
+    type: "website",
+  },
+};
+
 export default function About() {
  
   const values = [
