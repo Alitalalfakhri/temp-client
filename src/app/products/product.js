@@ -60,7 +60,6 @@ const ProductsPage = () => {
             if (isMounted) {
                 setProducts(data);
                 setLoading(false);
-                console.log(data)
             }
         } catch (err) {
             if (isMounted) setLoading(false);
