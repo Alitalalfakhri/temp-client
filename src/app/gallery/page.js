@@ -3,15 +3,15 @@
 import { useEffect, useState } from "react";
 import styles from "../styles/gallery/gallery.module.css";
 import axios from 'axios'
-// If using Next.js pages router, import from your components:
-// import Navbar from "@/components/Navbar";
-// import Footer from "@/components/Footer";
+import Header from "@/app/components/Header";
+ import Footer from "@/app/components/footer";
 import {API_URL} from '../lib/lib'
 export default function Gallery() {
   const [activeTab, setActiveTab] = useState("images");
   const [lightboxImage, setLightboxImage] = useState(null);
   const [activeVideo, setActiveVideo] = useState(null);
 
+  const[videos,setVideos] = useState([])
   const [images, setImages] = useState([])
 
   const isShorts = (url) => url && url.includes("/shorts/");
@@ -53,25 +53,35 @@ export default function Gallery() {
     fetchImages()
   },[])
 
-  const videos = [
-    { src: "https://www.youtube.com/embed/dQw4w9WgXcQ", title: "جولة في المصنع" },
-    { src: "https://www.youtube.com/embed/dQw4w9WgXcQ", title: "عملية الإنتاج" },
-    { src: "https://www.youtube.com/embed/dQw4w9WgXcQ", title: "مراقبة الجودة" },
-    { src: "https://www.youtube.com/embed/dQw4w9WgXcQ", title: "تغليف المنتجات" },
-    { src: "https://www.youtube.com/embed/dQw4w9WgXcQ", title: "الطباعة على الأكياس" },
-    { src: "https://www.youtube.com/embed/dQw4w9WgXcQ", title: "التعبئة والتغليف" },
-  ].map((v) => ({
-    ...v,
-    embedUrl: getYouTubeEmbedUrl(v.src),
-    thumbnail: getYouTubeThumbnail(v.src),
-  }));
+  useEffect(() => {
+      async function fetchVideos(){
+        try{
+          const res = await axios.get(`${API_URL}/api/factory/videos`)
+          console.log(res.data)
+          setVideos(res.data)
+
+          const processedVideos = res.data.map((v) => ({
+        ...v,
+        // Ensure you use v.videoUrl (the field from your DB)
+        embedUrl: getYouTubeEmbedUrl(v.videoUrl), 
+        thumbnail: getYouTubeThumbnail(v.videoUrl),
+      }));
+
+      // 2. Set the processed data to state
+      setVideos(processedVideos);
+      }catch(err){
+        console.error(err)
+      }
+  }
+  fetchVideos()
+
+}, [])
+  
 
   return (
     <div className={styles.wrapper}>
       {/* Replace with your <Navbar /> component */}
-      <nav className={styles.navbar}>
-        <span className={styles.navbarBrand}>المصنع</span>
-      </nav>
+      <Header/>
 
       {/* Hero */}
       <section className={styles.heroSection}>
@@ -219,9 +229,7 @@ export default function Gallery() {
       )}
 
       {/* Replace with your <Footer /> component */}
-      <footer className={styles.footer}>
-        <p>© 2024 المصنع. جميع الحقوق محفوظة.</p>
-      </footer>
+      <Footer/>
     </div>
   );
 }
