@@ -20,7 +20,17 @@
   align-items: center;
   justify-content: space-between;
 }
+.overlay{
+ position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;  /* Use viewport width */
+  height: 100vh; /* Use viewport height */
+  z-index: 998;
 
+}
 /* Logo */
 .logo {
   display: flex;
@@ -137,6 +147,7 @@
 }
 
 .mobile-menu {
+  z-index:10000;
   position: fixed;
   top: 80px;
   right: 0;

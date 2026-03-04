@@ -6,6 +6,9 @@ import axios from 'axios'
 import Header from "@/app/components/Header";
  import Footer from "@/app/components/footer";
 import {API_URL} from '../lib/lib'
+import { X } from 'lucide-react'
+
+
 export default function Gallery() {
   const [activeTab, setActiveTab] = useState("images");
   const [lightboxImage, setLightboxImage] = useState(null);
@@ -213,20 +216,17 @@ export default function Gallery() {
             className={styles.lightboxContent}
             onClick={(e) => e.stopPropagation()}
           >
+          <button className={styles.closeBtn} onClick={(e) => { e.stopPropagation(); setLightboxImage(null); }}>
+
+            <X />
+          </button>
+
             <img src={lightboxImage.src} alt={lightboxImage.title} />
             <p className={styles.lightboxTitle}>{lightboxImage.title}</p>
+            
           </div>
-          <button
-            type="button"
-            className={styles.lightboxClose}
-            onClick={(e) => { e.stopPropagation(); setLightboxImage(null); }}
-            aria-label="إغلاق"
-          >
-            <svg viewBox="0 0 24 24">
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </button>
+          
+            
         </div>
       )}
 

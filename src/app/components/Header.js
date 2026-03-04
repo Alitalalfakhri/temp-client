@@ -25,7 +25,7 @@ export default function Header() {
   const isActive = (path) => pathname === path;
 
   return (
-    <nav className="navbar">
+    <header className="navbar">
       <div className="navbar-container">
 
         {/* Logo */}
@@ -74,6 +74,7 @@ export default function Header() {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="mobile-menu">
+          
           {navLinks.map((link) => (
             <Link
               key={link.path}
@@ -92,8 +93,15 @@ export default function Header() {
           >
             طلب عرض سعر
           </Link>
+        
         </div>
+         
       )}
-    </nav>
+      {/* Overlay */}
+      {isOpen && (
+        <div className="overlay" onClick={() => setIsOpen(false)} />
+      )}
+      
+    </header>
   );
 }
