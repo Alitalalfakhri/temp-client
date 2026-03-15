@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Phone, Mail, MapPin, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook,Youtube, Twitter, Instagram, Linkedin } from "lucide-react";
 import "../styles/footer.css";
 import Image from "next/image";
 const Footer = () => {
@@ -9,7 +9,10 @@ const Footer = () => {
     { name: "الرئيسية", path: "/" },
     { name: "من نحن", path: "/about" },
     { name: "منتجاتنا", path: "/products" },
+    {name:'مكتبة اعمالنا' , path:'/gallery'},
+    {name:'اراء العملاء' , path:'/reviews'},
     { name: "تواصل معنا", path: "/contact" },
+    
   ];
 
   const products = [
@@ -23,7 +26,9 @@ const Footer = () => {
     { icon: Facebook, href: "https://www.facebook.com/altayf.gold/?locale=ar_AR", label: "Facebook" },
     
     { icon: Instagram, href: "https://www.instagram.com/altayfaldhahabiu?ighs=emNmM3J4OWJ5dnB5", label: "Instagram" },
-  ];
+
+    {icon: Youtube , href:'https://youtube.com/@altayfaldhahabiu?si=jciNpYXRzNHlygps' , label:'Youtube'}
+  ]
 
   return (
     <footer className="footer">

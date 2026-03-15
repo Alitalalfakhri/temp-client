@@ -30,6 +30,11 @@ const [floating, setFloating] = useState(false);
             <CheckCircle className="icon" />
             <span>مجاز من قبل وزارة التجارة دائرة مسجل الشركات</span>
           </div>
+           <div className="badge">
+            <CheckCircle className="icon" />
+            <span style={{marignTop:'10px'}}>مجاز من قبل التنمية الصناعية</span>
+          </div>
+
 
           <h1 className="hero-title">
             الشريك الأمثل لصناعة
