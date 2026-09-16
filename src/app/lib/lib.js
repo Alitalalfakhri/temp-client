@@ -1,1 +1,1 @@
-export const API_URL = 'https://temprory-production.up.railway.app'
+export const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';

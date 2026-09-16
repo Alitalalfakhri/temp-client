@@ -55,10 +55,12 @@ const ProductsPage = () => {
     const fetchProducts = async () => {
         try {
             const res = await fetch(`${API_URL}/api/products`);
+            
             if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
             const data = await res.json();
             if (isMounted) {
                 setProducts(data);
+                console.log(data)
                 setLoading(false);
             }
         } catch (err) {
@@ -182,8 +184,8 @@ const ProductsPage = () => {
               ) : (
                 <>
                   <div className={styles.imageClickArea} onClick={() => openImageDialog(product)}>
-                    <Image
-                      src={product.imageLink}
+                    <img
+                      src={`${API_URL}${product.imageLink}`}
                       alt={product.title}
                       width={500}
                       height={500}
@@ -247,8 +249,8 @@ const ProductsPage = () => {
             )}
             {dialogView === 'image' ? (
               <div className={styles.dialogImageWrapper}>
-                <Image
-                  src={selectedImage.imageLink}
+                <img
+                  src={`${API_URL}${selectedImage.imageLink}`}
                   alt={selectedImage.title}
                   width={1200}
                   height={1200}

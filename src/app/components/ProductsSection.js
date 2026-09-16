@@ -40,6 +40,7 @@ const ProductsSection = () => {
             }
         } catch (err) {
             if (isMounted) setLoading(false);
+            console.log(err)
             alert('Error fetching the products: ' + err.message);
         }
     }
@@ -84,7 +85,7 @@ const ProductsSection = () => {
               onClick={() => handelClick(product.title)}
             >
               <div className="product-image-wrapper">
-                <Image src={product.imageLink} alt={product.title} className="product-image" width={100} height={100} />
+                <img src={`${API_URL}${product.imageLink}`} alt={product.title} className="product-image" width={100} height={100} />
                 <div className="product-gradient" />
                 
               </div>
