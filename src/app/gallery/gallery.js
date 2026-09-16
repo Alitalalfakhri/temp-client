@@ -143,9 +143,9 @@ export default function Gallery() {
     <div
       key={i}
       className={styles.imageCard}
-      onClick={() => setLightboxImage({ src: img.imageUrl, title: img.title })}
+      onClick={() => setLightboxImage({ src: `${API_URL}${img.imageUrl}`, title: img.title })}
     >
-      <img src={img.imageUrl} alt={img.title} loading="lazy" />
+      <img src={`${API_URL}${img.imageUrl}`} alt={img.title} loading="lazy" />
       <div className={styles.imageOverlay}>
         <p>{img.title}</p>
       </div>
