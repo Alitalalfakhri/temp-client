@@ -9,9 +9,9 @@ import "../styles/hero.css";
 const headline = "من خطوط الإنتاج إلى ايدي عملائك.";
 const supportingLine = "نصنع التغليف الذي يحمل اسمك بثقة.";
 const ringAssets = [
-  { assetPath: "/models/chili_house.glb", scale: 0.9, x: 0.4, y: -0.08, z: 0, floatPhase: 0 },
-  { assetPath: "/models/flafl_lebnan.glb", scale: 1, x: -0.3, y: 0.38, z: -1, floatPhase: 0.8 },
-  { assetPath: "/models/abo_abd.glb", scale: 0.9, x: -0.4, y: -0.2, z: 0, straight: true, floatPhase: 1.6 }
+  { assetPath: "/models/chili_house-optimized.glb", scale: 0.9, x: 0.4, y: -0.08, z: 0, floatPhase: 0 },
+  { assetPath: "/models/flafl_lebnan-optimized.glb", scale: 1, x: -0.3, y: 0.38, z: -1, floatPhase: 0.8 },
+  { assetPath: "/models/abo_abd-optimized.glb", scale: 0.9, x: -0.4, y: -0.2, z: 0, straight: true, floatPhase: 1.6 }
 ];
 
 function RingScene({ active }) {
