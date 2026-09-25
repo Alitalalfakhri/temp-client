@@ -15,7 +15,7 @@ export default function Header() {
     { name: "منتجاتنا", path: "/products" },
 
   
-    {name:'معرض اعمالنا', path:'/gallery' },
+    {name: "خبراتنا السابقة", path: '/gallery' },
      {name: 'اراء العملاء' , path: '/reviews'},
        { name: "من نحن", path: "/about" },
     { name: "تواصل معنا", path: "/contact" },

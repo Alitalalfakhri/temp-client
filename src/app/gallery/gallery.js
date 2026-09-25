@@ -93,12 +93,12 @@ export default function Gallery() {
       <section className={styles.heroSection}>
         <div className={styles.heroContainer}>
           <div className={styles.heroInner}>
-            <span className={styles.badge}>معرض الأعمال</span>
+            <span className={styles.badge}>خبراتنا السابقة </span>
             <h1 className={styles.heroTitle}>
               مكتبة <span>الصور والفيديو</span>
             </h1>
             <p className={styles.heroDesc}>
-              استعرض أعمالنا ومنتجاتنا وخطوط الإنتاج في مصنعنا
+              
             </p>
           </div>
         </div>

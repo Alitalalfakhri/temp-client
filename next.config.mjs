@@ -9,6 +9,11 @@ const nextConfig = {
         port: "5000",
         pathname: "/uploads/products/**",
       },
+      {
+        protocol: "https",
+        hostname: "img.youtube.com",
+        pathname: "/vi/**",
+      },
     ],
   },
 };
